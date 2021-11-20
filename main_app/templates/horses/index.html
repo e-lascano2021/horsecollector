@@ -9,26 +9,32 @@
 
 <section class="page-header">
   <h1>Horse List</h1>
-  <img src="{% static 'images/applejack.jpeg' %}" alt="A pplejack" />
-  <img src="{% static 'images/happy-cat.svg' %}" alt="A happy cat" />
-  <img src="{% static 'images/teacup-cat.svg' %}" alt="A cat in a teacup" />
-  <img src="{% static 'images/cat-in-box.svg' %}" alt="A cat in a box" />
+  <img src="{% static 'images/applejack.jpeg' %}" alt="Applejack" />
+  <img src="{% static 'images/twighlightsparkle.jpeg' %}" alt="Twighlight Sparkle" />
+  <img src="{% static 'images/topher.jpeg' %}" alt="Cool Male Horse" />
+  <img src="{% static 'images/sweet.png' %}" alt="Sweet Male Horse" />
 </section>
 
 <section class="card-container">
   {% for horse in horses %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/sk8r-boi-cat.svg' %}" 
-            alt="A skater boy cat"
-          >
-        </div>
-        <h2 class="card-title">{{ horse.name }}</h2>
-          <p>A {{ horse.age }} year old {{ horse.breed }}</p>
+      <a href="{% url 'horses_detail' horse.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/sk8r-boi-horse.svg' %}" 
+              alt="A skater boy horse"
+            >
+          </div>
+          <h2 class="card-title">{{ horse.name }}</h2>
+          {% if horse.age > 0 %}
+            <p>A {{ horse.age }} year old {{ horse.breed }}</p>
+          {% else %}
+            <p>A {{ horse.breed }} kitten.</p>
+          {% endif %}
           <p><small>{{ horse.description }}</small></p>
-      </div>
+        </div>
+      </a>
     </div>
   {% endfor %}
 </section>
