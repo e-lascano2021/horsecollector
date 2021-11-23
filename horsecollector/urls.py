@@ -24,4 +24,5 @@ urlpatterns = [
     # In this case '' represents the root route
     # localhost:8000/
     path('', include('main_app.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
